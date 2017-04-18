@@ -2,6 +2,8 @@
 
 This script is meant to be used for your bash prompt. It simply detects if the current directory likely includes a virtual environment that can be activated.
 
+![screenshot](./screenshot.png)
+
 ## Setup
 
 1. `$ git clone https://github.com/tstringer/venvdetect.git`
