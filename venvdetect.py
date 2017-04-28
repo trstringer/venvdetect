@@ -2,6 +2,7 @@
 
 """Script to detect current working directory virtual environment"""
 
+import argparse
 import os
 
 def venv_directories():
@@ -24,13 +25,22 @@ def current_venv():
 def main():
     """Main function"""
 
+    # give the user the option to add a trailing space
+    # this helps with PS1 output
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--space', help='add a trailing space to output', action='store_true')
+    args = parser.parse_args()
+
     current_virtual_env = current_venv()
 
     cwd = os.getcwd()
     for venv_dir in venv_directories():
         if directory_has_activate(os.path.join(cwd, venv_dir)):
             if venv_dir != current_virtual_env:
-                print('available ({})'.format(venv_dir), end='')
+                print('available ({}){}'.format(
+                    venv_dir,
+                    ' ' if args.space else ''
+                ), end='')
             break
 
 if __name__ == '__main__':
